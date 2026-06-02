@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Colors
+# --- COLORS ---
 PINK='\033[38;5;213m'
 PURPLE='\033[38;5;99m'
 GREEN='\033[38;5;46m'
@@ -10,7 +10,7 @@ WHITE='\033[1;97m'
 RED='\033[1;91m'
 NC='\033[0m'
 
-# Password
+# --- PASSWORD CONFIG ---
 CORRECT_PASSWORD="pratik123"
 MAX_ATTEMPTS=3
 
@@ -35,6 +35,108 @@ check_password() {
             echo -e "${RED}[✗] Wrong Password! Attempts left: $remaining${NC}"
             sleep 1
         fi
+    done
+    echo -e "${RED}[!] Too many attempts. Exiting...${NC}"
+    exit 1
+}
+
+check_password
+
+while true; do
+    clear
+
+    # --- HEADER (Fixed: No more EOF issues) ---
+    echo -e "${PINK}"
+    echo "██████╗ ██████╗  █████╗ ████████╗██╗██╗  ██╗"    echo "██╔══██╗██══██╗██╔══██╗╚══██╔══╝██║██║ ██╔╝"
+    echo "██████╝██████╔╝███████║   ██║   ██║█████╔╝"
+    echo "██╔═══╝ ██══██╗██╔══██║   ██║   ██║██╔═██╗"
+    echo "██║     ██║  ██║██║  ██║   ██║   ██║██║  ██╗"
+    echo "╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═╝"
+    echo -e "${NC}"
+    
+    echo -e "${PURPLE}                    V7.0${NC}"
+    echo -e "${GREEN}              PRATIK EXTRAS${NC}"
+    echo ""
+
+    echo -e "${PINK}╔══════════════════════════════════════════╗${NC}"
+    echo -e "${PURPLE}║${WHITE}        PREMIUM INSTALLER SYSTEM         ${PURPLE}║${NC}"
+    echo -e "${PINK}╚══════════════════════════════════════════╝${NC}"
+    echo ""
+
+    # --- SYSTEM INFO ---
+    echo -e "${CYAN}System Information${NC}"
+    echo -e "OS      : $(grep '^PRETTY_NAME=' /etc/os-release | cut -d'=' -f2 | tr -d '\"')"
+    echo -e "RAM     : $(free -h | awk '/^Mem:/ {print $2}')"
+    echo -e "CPU     : $(nproc) Cores"
+    echo -e "User    : $(whoami)"
+    echo ""
+
+    # --- MAIN MENU ---
+    echo -e "${WHITE}[1]${NC} ${GREEN}Panels${NC}"
+    echo -e "${YELLOW}[2]${NC} ${CYAN}Neo${WHITE}Fetch ${CYAN}Installer${NC}"
+    echo -e "${WHITE}[3]${NC} ${RED}Exit${NC}"
+    echo ""
+
+    read -rp "Select => " OPTION
+
+    case "$OPTION" in
+        1)
+            clear
+            echo -e "${CYAN}╔════════════════════════════╗${NC}"
+            echo -e "${GREEN}║          PANELS           ║${NC}"
+            echo -e "${CYAN}╚════════════════════════════╝${NC}"
+            echo ""
+            echo -e "${WHITE}[1]${NC} ${GREEN}UnOfficial Panel (Crispy Adventure)${NC}"
+            echo -e "${WHITE}[2]${NC} ${RED}Back${NC}"
+            echo ""
+            read -rp "Select => " PANEL
+
+            case "$PANEL" in
+                1)
+                    echo -e "${CYAN}[+] Installing Crispy Adventure Panel...${NC}"
+                    sudo apt update -y
+                    sudo apt upgrade -y
+                    rm -rf crispy-adventure                    git clone https://github.com/pratikgamer11/crispy-adventure
+                    cd crispy-adventure || { echo -e "${RED}[!] Clone failed.${NC}"; sleep 2; continue; }
+                    apt install -y nodejs
+                    npm install express
+                    echo -e "${GREEN}[✓] Starting panel...${NC}"
+                    node .
+                    exit 0
+                    ;;
+                2)
+                    continue
+                    ;;
+                *)
+                    echo -e "${RED}[!] Invalid choice.${NC}"
+                    sleep 1
+                    ;;
+            esac
+            ;;
+
+        2)
+            clear
+            echo -e "${CYAN}[+] Updating system & installing NeoFetch...${NC}"
+            apt update -y
+            apt upgrade -y
+            apt install -y neofetch
+            echo -e "${GREEN}[✓] Done!${NC}"
+            neofetch
+            echo ""
+            read -rp "Press Enter to return..."
+            ;;
+
+        3)
+            echo -e "${GREEN}Goodbye, Pratik! 🙌${NC}"
+            exit 0
+            ;;
+
+        *)
+            echo -e "${RED}[!] Please enter 1, 2, or 3.${NC}"
+            sleep 1
+            ;;
+    esac
+done        fi
     done
     echo -e "${RED}[!] Too many attempts. Exiting...${NC}"
     exit 1
