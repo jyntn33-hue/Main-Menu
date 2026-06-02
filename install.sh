@@ -156,7 +156,6 @@ show_loading() {
         echo -ne "="
     done
     echo "] 100%"
-}
 
 # Detect environment
 detect_environment() {
