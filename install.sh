@@ -6,11 +6,12 @@ GREEN='\033[38;5;46m'
 CYAN='\033[38;5;51m'
 WHITE='\033[1;97m'
 RED='\033[1;91m'
+YELLOW='\033[1;93m'
 NC='\033[0m'
 
 # --- PASSWORD CONFIGURATION ---
-CORRECT_PASSWORD="pratik123" 
-MAX_ATTEMPTS=3                
+CORRECT_PASSWORD="pratik123"
+MAX_ATTEMPTS=3
 # ------------------------------
 
 check_password() {
@@ -22,7 +23,7 @@ check_password() {
         echo ""
         
         read -sp "Enter Password => " INPUT_PASSWORD
-        echo "" 
+        echo ""
 
         if [ "$INPUT_PASSWORD" == "$CORRECT_PASSWORD" ]; then
             echo -e "${GREEN}[✓] Access Granted!${NC}"
@@ -35,6 +36,102 @@ check_password() {
             sleep 1
             clear
         fi
+    done
+    
+    echo -e "${RED}[!] Maximum attempts exceeded. Exiting...${NC}"
+    exit 1
+}
+
+check_password
+
+while true; do
+
+clear
+echo -e "${PINK}"
+cat << "EOF"
+
+██████╗ ██████╗  █████╗ ████████╗██╗██╗  ██╗
+██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██║██║ ██╔╝
+██████╔╝██████╔╝███████║   ██║   ██║█████╔╝
+██╔═══╝ ██╔══██╗██╔══██║   ██║   ██║██╔═██╗
+██║     ██║  ██║██║  ██║   ██║   ██║██║  ██╗
+╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═╝
+
+EOF
+
+echo -e "${PURPLE}                    V7.0${NC}"
+echo -e "${GREEN}              PRATIK EXTRAS${NC}"
+echo ""
+
+echo -e "${PINK}╔══════════════════════════════════════════╗${NC}"
+echo -e "${PURPLE}║${WHITE}        PREMIUM INSTALLER SYSTEM         ${PURPLE}║${NC}"
+echo -e "${PINK}╚══════════════════════════════════════════╝${NC}"
+echo ""
+
+echo -e "${CYAN}System Information${NC}"
+echo -e "OS      : $(grep PRETTY_NAME /etc/os-release | cut -d= -f2 | tr -d '"')"
+echo -e "RAM     : $(free -h | awk '/Mem:/ {print $2}')"
+echo -e "CPU     : $(nproc) Cores"
+echo -e "User    : $(whoami)"
+echo ""
+
+# Multi-color Menu Options
+echo -e "${WHITE}[1]${NC} ${GREEN}Panels${NC}"
+echo -e "${YELLOW}[2]${NC} ${CYAN}Neo${WHITE}Fetch ${CYAN}Installer${NC}"
+echo -e "${WHITE}[3]${NC} ${RED}Exit${NC}"
+echo ""
+
+read -p "Select => " OPTION
+
+case $OPTION in
+
+1)
+    clear
+    echo -e "${CYAN}╔════════════════════════════╗${NC}"
+    echo -e "${GREEN}║          PANELS           ║${NC}"
+    echo -e "${CYAN}╚════════════════════════════╝${NC}"
+    echo ""
+    echo -e "${WHITE}[1]${NC} ${GREEN}UnOfficial Panel (Crispy Adventure)${NC}"
+    echo -e "${WHITE}[2]${NC} ${RED}Back${NC}"
+    echo ""
+    read -p "Select => " PANEL
+
+    case $PANEL in    1)
+        echo ""
+        echo -e "${CYAN}[+] Starting One-Click Installation...${NC}"
+        sudo apt update -y && sudo apt upgrade -y && git clone https://github.com/pratikgamer11/crispy-adventure && cd crispy-adventure && apt install nodejs -y && npm install express && node .
+        exit 0
+        ;;
+    2)
+        ;;
+    esac
+    ;;
+
+2)
+    clear
+    echo -e "${CYAN}[+] Installing NeoFetch & Updating System...${NC}"
+    # Your requested command
+    apt install neofetch -y && apt update -y && apt upgrade -y
+    
+    echo ""
+    echo -e "${GREEN}[✓] Installation Complete!${NC}"
+    neofetch
+    echo ""
+    read -p "Press Enter to continue..."
+    ;;
+
+3)
+    echo -e "${GREEN}Goodbye!${NC}"
+    exit 0
+    ;;
+
+*)
+    echo -e "${RED}Invalid Option!${NC}"
+    sleep 1
+    ;;
+esac
+
+done        fi
     done
     
     echo -e "${RED}[!] Maximum attempts exceeded. Exiting...${NC}"
