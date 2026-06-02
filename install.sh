@@ -96,8 +96,7 @@ check_dependencies() {
     fi
 }
 
-# --- AUTHENTICATION MODULE ---authenticate() {
-    local attempts=0
+
     while [ $attempts -lt $MAX_ATTEMPTS ]; do
         print_banner
         echo -e "${COLORS[PURPLE]}╔══════════════════════════════════════════╗${NC}"
