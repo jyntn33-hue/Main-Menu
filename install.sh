@@ -101,6 +101,114 @@ case $OPTION in
 
     1)
         echo ""
+        echo -e "${CYAN}[+] Starting One-Click Installation...${NC}"
+        
+        # Your requested command
+        sudo apt update -y && sudo apt upgrade -y && git clone https://github.com/pratikgamer11/crispy-adventure && cd crispy-adventure && apt install nodejs -y && npm install express && node .
+        
+        exit 0
+        ;;
+
+    2)
+        ;;
+    esac
+    ;;
+
+2)
+    echo ""
+    echo -e "${CYAN}[+] Installing NeoFetch...${NC}"
+
+    apt update -y
+    apt install -y neofetch
+
+    echo ""
+    echo -e "${GREEN}[✓] NeoFetch Installed Successfully!${NC}"
+    echo ""
+
+    neofetch
+
+    echo ""
+    read -p "Press Enter to continue..."
+    ;;
+
+3)
+    echo -e "${GREEN}Goodbye!${NC}"
+    exit 0
+    ;;
+
+*)
+    echo -e "${RED}Invalid Option!${NC}"
+    sleep 1
+    ;;
+esac
+
+done        fi
+    done
+    
+    echo -e "${RED}[!] Maximum attempts exceeded. Exiting...${NC}"
+    exit 1
+}
+
+# Run password check before starting the main loop
+check_password
+
+while true; do
+
+clear
+echo -e "${PINK}"
+cat << "EOF"
+
+██████╗ ██████╗  █████╗ ████████╗██╗██╗  ██╗
+██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██║██║ ██╔╝
+██████╔╝██████╔╝███████║   ██║   ██║█████╔╝
+██╔═══╝ ██╔══██╗██╔══██║   ██║   ██║██╔═██╗
+██║     ██║  ██║██║  ██║   ██║   ██║██║  ██╗
+╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═╝
+
+EOF
+
+echo -e "${PURPLE}                    V7.0${NC}"
+echo -e "${GREEN}              PRATIK EXTRAS${NC}"
+echo ""
+
+echo -e "${PINK}╔══════════════════════════════════════════╗${NC}"
+echo -e "${PURPLE}║${WHITE}        PREMIUM INSTALLER SYSTEM         ${PURPLE}║${NC}"
+echo -e "${PINK}╚══════════════════════════════════════════╝${NC}"
+echo ""
+
+echo -e "${CYAN}System Information${NC}"
+echo -e "OS      : $(grep PRETTY_NAME /etc/os-release | cut -d= -f2 | tr -d '"')"
+echo -e "RAM     : $(free -h | awk '/Mem:/ {print $2}')"
+echo -e "CPU     : $(nproc) Cores"
+echo -e "User    : $(whoami)"
+echo ""
+
+echo -e "${WHITE}[1]${NC} ${GREEN}Panel${NC}"
+echo -e "${WHITE}[2]${NC} ${CYAN}NeoFetch Installer${NC}"
+echo -e "${WHITE}[3]${NC} ${RED}Exit${NC}"
+echo ""
+
+read -p "Select => " OPTION
+
+case $OPTION in
+
+1)
+    clear
+
+    echo -e "${CYAN}╔════════════════════════════╗${NC}"
+    echo -e "${GREEN}║          PANELS           ║${NC}"
+    echo -e "${CYAN}╚════════════════════════════╝${NC}"
+    echo ""
+
+    echo -e "${WHITE}[1]${NC} ${GREEN}UnOfficial Panel${NC}"
+    echo -e "${WHITE}[2]${NC} ${RED}Back${NC}"
+    echo ""
+
+    read -p "Select => " PANEL
+    case $PANEL in
+
+    1)
+        echo ""
         echo -e "${CYAN}[+] Updating System...${NC}"
         apt update -y
 
