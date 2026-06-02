@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ANSI Color Codes
+# Colors
 PINK='\033[38;5;213m'
 PURPLE='\033[38;5;99m'
 GREEN='\033[38;5;46m'
@@ -10,11 +10,10 @@ WHITE='\033[1;97m'
 RED='\033[1;91m'
 NC='\033[0m'
 
-# 🔐 Password Configuration
+# Password
 CORRECT_PASSWORD="pratik123"
 MAX_ATTEMPTS=3
 
-# 🔍 Password Check Function
 check_password() {
     local attempts=0
     while [ $attempts -lt $MAX_ATTEMPTS ]; do
@@ -23,9 +22,8 @@ check_password() {
         echo -e "${PURPLE}║${WHITE}      ENTER PASSWORD TO ACCESS SYSTEM     ${PURPLE}║${NC}"
         echo -e "${PURPLE}╚══════════════════════════════════════════╝${NC}"
         echo ""
-        
         read -sp "Enter Password => " INPUT_PASSWORD
-        echo ""  # Newline after hidden input
+        echo ""
 
         if [ "$INPUT_PASSWORD" = "$CORRECT_PASSWORD" ]; then
             echo -e "${GREEN}[✓] Access Granted!${NC}"
@@ -38,21 +36,18 @@ check_password() {
             sleep 1
         fi
     done
-
-    echo -e "${RED}[!] Too many failed attempts. Exiting...${NC}"
+    echo -e "${RED}[!] Too many attempts. Exiting...${NC}"
     exit 1
 }
 
-# ✅ Run password check before main loop
 check_password
 
-# 🔄 Main Menu Loop
-while true; do    clear
+while true; do
+    clear
 
     # Logo
     echo -e "${PINK}"
-    cat << "EOF"
-██████╗ ██████╗  █████╗ ████████╗██╗██╗  ██╗
+    cat << "EOF"██████╗ ██████╗  █████╗ ████████╗██╗██╗  ██╗
 ██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██║██║ ██╔╝
 ██████╔╝██████╔╝███████║   ██║   ██║█████╔╝
 ██╔═══╝ ██╔══██╗██╔══██║   ██║   ██║██╔═██╗
@@ -63,7 +58,85 @@ EOF
     echo -e "${GREEN}              PRATIK EXTRAS${NC}"
     echo ""
 
-    # Header
+    echo -e "${PINK}╔══════════════════════════════════════════╗${NC}"
+    echo -e "${PURPLE}║${WHITE}        PREMIUM INSTALLER SYSTEM         ${PURPLE}║${NC}"
+    echo -e "${PINK}╚══════════════════════════════════════════╝${NC}"
+    echo ""
+
+    # System Info
+    echo -e "${CYAN}System Information${NC}"
+    echo -e "OS      : $(grep '^PRETTY_NAME=' /etc/os-release | cut -d'=' -f2 | tr -d '\"')"
+    echo -e "RAM     : $(free -h | awk '/^Mem:/ {print $2}')"
+    echo -e "CPU     : $(nproc) Cores"
+    echo -e "User    : $(whoami)"
+    echo ""
+
+    # Main Menu
+    echo -e "${WHITE}[1]${NC} ${GREEN}Panels${NC}"
+    echo -e "${YELLOW}[2]${NC} ${CYAN}Neo${WHITE}Fetch ${CYAN}Installer${NC}"
+    echo -e "${WHITE}[3]${NC} ${RED}Exit${NC}"
+    echo ""
+
+    read -rp "Select => " OPTION
+
+    case "$OPTION" in
+        1)
+            clear
+            echo -e "${CYAN}╔════════════════════════════╗${NC}"
+            echo -e "${GREEN}║          PANELS           ║${NC}"
+            echo -e "${CYAN}╚════════════════════════════╝${NC}"
+            echo ""
+            echo -e "${WHITE}[1]${NC} ${GREEN}UnOfficial Panel (Crispy Adventure)${NC}"
+            echo -e "${WHITE}[2]${NC} ${RED}Back${NC}"
+            echo ""
+            read -rp "Select => " PANEL
+
+            case "$PANEL" in
+                1)
+                    echo -e "${CYAN}[+] Installing Crispy Adventure Panel...${NC}"
+                    sudo apt update -y
+                    sudo apt upgrade -y
+                    rm -rf crispy-adventure                    git clone https://github.com/pratikgamer11/crispy-adventure
+                    cd crispy-adventure || { echo -e "${RED}[!] Clone failed.${NC}"; sleep 2; continue; }
+                    apt install -y nodejs
+                    npm install express
+                    echo -e "${GREEN}[✓] Starting panel...${NC}"
+                    node .
+                    exit 0
+                    ;;
+                2)
+                    continue
+                    ;;
+                *)
+                    echo -e "${RED}[!] Invalid choice.${NC}"
+                    sleep 1
+                    ;;
+            esac
+            ;;
+
+        2)
+            clear
+            echo -e "${CYAN}[+] Updating system & installing NeoFetch...${NC}"
+            apt update -y
+            apt upgrade -y
+            apt install -y neofetch
+            echo -e "${GREEN}[✓] Done!${NC}"
+            neofetch
+            echo ""
+            read -rp "Press Enter to return..."
+            ;;
+
+        3)
+            echo -e "${GREEN}Goodbye, Pratik! 🙌${NC}"
+            exit 0
+            ;;
+
+        *)
+            echo -e "${RED}[!] Please enter 1, 2, or 3.${NC}"
+            sleep 1
+            ;;
+    esac
+done    # Header
     echo -e "${PINK}╔══════════════════════════════════════════╗${NC}"
     echo -e "${PURPLE}║${WHITE}        PREMIUM INSTALLER SYSTEM         ${PURPLE}║${NC}"
     echo -e "${PINK}╚══════════════════════════════════════════╝${NC}"
@@ -144,8 +217,9 @@ EOF
             sleep 1
             ;;
     esac
-done            clear
+    
         fi
+        
     done
     
     echo -e "${RED}[!] Maximum attempts exceeded. Exiting...${NC}"
