@@ -40,7 +40,6 @@ print_banner() {
     ██║     ██║  ██║██║  ██║   ██║   ██║██║  ██╗
     ╚═╝     ╚═╝  ╚═╝═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ═╝
 EOF
-    echo -e "${C[NC]}"
     echo -e "${C[PURPLE]}                    V7.0${NC}"
     echo -e "${C[GREEN]}              PRATIK EXTRAS${NC}"
     echo -e "${C[DIM]}────────────────────────────────────────────${NC}"
